@@ -34,7 +34,7 @@ body {
 }
 
 .menu {
-  background: #202024 url('../Images/menu_pattern.jpg') repeat left top;
+  background: #202024 url('../images/menu_pattern.jpg') repeat left top;
   left: -285px;  
   height: 100%;
   position: fixed;
@@ -88,7 +88,7 @@ body {
 }
 
 .jumbotron {
-  background-image:url('../Images/head.jpg');
+  background-image:url('../images/head.jpg');
   height: 350px;
   background-size: cover;
 }
@@ -143,35 +143,35 @@ body {
 #cboxTopLeft {
     width: 21px;
     height: 21px;
-    background: url("../Images/control.jpg") no-repeat -101px 0
+    background: url("../images/control.jpg") no-repeat -101px 0
 }
 
 #cboxTopRight {
     width: 21px;
     height: 21px;
-    background: url("../Images/control.jpg") no-repeat -130px 0
+    background: url("../images/control.jpg") no-repeat -130px 0
 }
 
 #cboxBottomLeft {
     width: 21px;
     height: 21px;
-    background: url("../Images/control.jpg") no-repeat -101px -29px
+    background: url("../images/control.jpg") no-repeat -101px -29px
 }
 
 #cboxBottomRight {
     width: 21px;
     height: 21px;
-    background: url("../Images/control.jpg") no-repeat -130px -29px
+    background: url("../images/control.jpg") no-repeat -130px -29px
 }
 
 #cboxMiddleLeft {
     width: 21px;
-    background: url("../Images/control.jpg") left top repeat-y
+    background: url("../images/control.jpg") left top repeat-y
 }
 
 #cboxMiddleRight {
     width: 21px;
-    background: url("../Images/control.jpg") right top repeat-y
+    background: url("../images/control.jpg") right top repeat-y
 }
 
 #cboxPrevious {
@@ -181,7 +181,7 @@ body {
 	border: 0;
 	margin: 0;
 	padding:0;
-    background: url("../Images/control.jpg") no-repeat -75px 0;
+    background: url("../images/control.jpg") no-repeat -75px 0;
     width: 26px;
     height: 27px;
     text-indent: -9999px
@@ -198,7 +198,7 @@ body {
 	margin: 0;
 	padding:0;
     left: 53px;
-    background: url("../Images/control.jpg") no-repeat -50px 0;
+    background: url("../images/control.jpg") no-repeat -50px 0;
     width: 27px;
     height: 27px;
     text-indent: -9999px
@@ -215,7 +215,7 @@ body {
 	border: 0;
 	margin: 0;
 	padding:0;
-    background: url("../Images/control.jpg") no-repeat -25px 0;
+    background: url("../images/control.jpg") no-repeat -25px 0;
     width: 27px;
     height: 27px;
     text-indent: -9999px
@@ -227,12 +227,12 @@ body {
 
 #cboxTopCenter {
     height: 21px;
-    background: url("../Images/border.jpg") 0 0 repeat-x
+    background: url("../images/border.jpg") 0 0 repeat-x
 }
 
 #cboxBottomCenter {
     height: 21px;
-    background: url("../Images/border.jpg") 0 -29px repeat-x
+    background: url("../images/border.jpg") 0 -29px repeat-x
 }
 
 #cboxContent {
