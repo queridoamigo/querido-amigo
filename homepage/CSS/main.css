@@ -124,22 +124,37 @@ body {
   color: #00b0ff;
 }
 
-.neighborhood-guides {
+.main-pics {
     background-color: #efefef;
     border-bottom: 1px solid #dbdbdb;
 }
 
-.neighborhood-guides h2 {
+.main-pics h2 {
     color: #393c3d;    
     font-size: 24px;
 }
 
-.neighborhood-guides p {
+.main-pics p {
     font-size: 15px;
     margin-bottom: 13px;
 }
 
+.main-pics .thumbnail {
+    margin: none;
+    padding: none;
+    border: none;
+    background-color: transparent;
+    position: relative;
+}
 
+.main-pics .thumbnail h4 {
+    font-family: Shift, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 29px;
+    color: #fff;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, .5);
+    position: absolute;
+    top: 0;
+}
 #cboxTopLeft {
     width: 21px;
     height: 21px;
