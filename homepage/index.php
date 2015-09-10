@@ -42,11 +42,46 @@
         <div class="container">
             <h2>Shots about my life</h2>
             <p></p>
-				<?php
-						completeRows();
-				?>                
+				<div class="slider">
+					<div class="slide active-slide">
+						<?php
+								completeRows();
+						?>                
+					</div>
+
+					<div class="slide slide-feature">
+						<?php
+								completeRows1();
+						?>                
+					  </div> 
+
+					<div class="slide slide-feature">
+						<?php
+								completeRows2();
+						?>                
+					  </div> 
+
+					<div class="slide slide-feature">
+						<?php
+								completeRows3();
+						?>                
+					  </div> 
+
+				</div>
         </div>
     </div>
+
+	    <div class="slider-nav">
+      <a href="#" class="arrow-prev"><img src="http://s3.amazonaws.com/codecademy-content/courses/ltp2/img/flipboard/arrow-prev.png"></a>
+      <ul class="slider-dots">
+        <li class="dot active-dot">&bull;</li>
+        <li class="dot">&bull;</li>
+        <li class="dot">&bull;</li>
+        <li class="dot">&bull;</li>
+      </ul>
+      <a href="#" class="arrow-next"><img src="http://s3.amazonaws.com/codecademy-content/courses/ltp2/img/flipboard/arrow-next.png"></a>
+    </div> 
+
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="app.js"></script>
