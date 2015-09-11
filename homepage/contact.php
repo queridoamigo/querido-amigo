@@ -32,9 +32,9 @@
 			My links:
 		</h3>
 	</div>
-	<div class="camlist">
-		<p><a href="https://www.flickr.com/photos/querido_amigo/">Flickr</a></p>	
-		<p><a href="https://instagram.com/querido_amigo/">Instagram</a></p>	
+	<div class="myLinks">
+		<p><a href="https://www.flickr.com/photos/querido_amigo/" style="color: #000000">Flickr</a></p>	
+		<p><a href="https://instagram.com/querido_amigo/" style="color: #000000">Instagram</a></p>	
 	</div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="app.js"></script>

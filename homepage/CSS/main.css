@@ -31,6 +31,17 @@ body {
 	text-align: center;
 }
 
+.myLinks {
+	color: #000000;
+	font-size: 36px;
+  font-family: 'Big Caslon','Book Antiqua',Serif;
+  text-align: center;
+}
+
+.myLinks a:hover {
+	color: black;
+}
+
 .camlist {
     width: 300px;
     height: 250px;
@@ -111,6 +122,23 @@ body {
     padding-right: 0;
     padding-left: 0;
 }
+
+.speech {
+	margin-left: 4%;
+	margin-right: 4%;
+}
+
+.speech li {
+	font-size: 17px;
+ 	font-family: 'Big Caslon','Book Antiqua',Serif;
+	font-weight: bold;
+}
+
+.speech li p {
+	font-size: 15px;
+	font-weight: normal;
+}
+
 /*SLIDER*/
 
 .slider {
