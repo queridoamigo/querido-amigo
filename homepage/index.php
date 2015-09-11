@@ -32,15 +32,12 @@
       </div>
 
       <div class="container">
-        <h1>Querido Amigo</h1>
-        <p>Yup, thats me.</p>
-        <a href="https://www.flickr.com/photos/querido_amigo/">See More</a>
+        <h1 id="hTitle">Querido Amigo</h1>
       </div>
     </div> 
 
     <div class="main-pics">
         <div class="container">
-            <h2>Shots about my life</h2>
             <p></p>
 				<div class="slider">
 					<div class="slide active-slide">
