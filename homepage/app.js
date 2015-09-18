@@ -65,7 +65,7 @@ function randomInteger(min, max) {
     return rand;
   }
 
-var i = 0;
+var i = offsetCam = offsetFilm = score = topDiff = leftDiff = 0;
 
 var isEven = function(Num) {
   return (Num % 2 == 0) ? true : false;
@@ -76,51 +76,105 @@ var isEven = function(Num) {
 			// Left arrow key pressed
 			case 37:
 			case 65:
-			i = randomInteger(1,20);
-				$('#cam').animate({left: "-=10px"}, 'fast');
-				// Move film roll
-				if(isEven(i) === true && i <= 10) {
-					$('#film').animate({left: "-=10px"}, 'fast');
-				} else if(isEven(i) === true && i >= 10) {
-					$('#film').animate({left: "+=15px"}, 'fast');
+				$('#cam').stop();
+				offsetcam = $('#cam').offset();
+				offsetfilm = $('#film').offset();
+				if((offsetfilm.top - 40 <= offsetcam.top && offsetcam.top <= offsetfilm.top +
+				40) && (offsetfilm.left - 40 <= offsetcam.left && offsetcam.left <= offsetfilm.left +
+				40)) {
+					score++;
+					alert('GOT IT! Your score:' + score);
+					$('#cam').offset({top:10, left: 20});
+					$('#film').offset({top:300, left: 300});
 				} else {
-					$('#film').animate({left: "+=25px"}, 'fast');
+							i = randomInteger(1,20);
+								$('#cam').animate({left: "-=10px"}, 50);
+								// Move film roll
+								if(isEven(i) === true && i <= 10) {
+									$('#film').animate({left: "-=10px"}, 50);
+								} else if(isEven(i) === true && i >= 10) {
+									$('#film').animate({left: "+=15px"}, 50);
+								} else {
+									$('#film').animate({left: "+=25px"}, 50);
+								}
 				}
 				break;
 			// Up Arrow Pressed
 			case 38:
 			case 87:
-			i = randomInteger(1,20);
-				$('#cam').animate({top: "-=10px"}, 'fast');
-				// Move film roll
-				if(isEven(i) === true) {
-					$('#film').animate({top: "-=12px"}, 'fast');
+				$('#cam').stop();
+				offsetcam = $('#cam').offset();
+				offsetfilm = $('#film').offset();
+				if((offsetfilm.top - 40 <= offsetcam.top && offsetcam.top <= offsetfilm.top +
+				40) && (offsetfilm.left - 40 <= offsetcam.left && offsetcam.left <= offsetfilm.left +
+				40)) {
+					score++;
+					alert('GOT IT! Your score:' + score);
+					$('#cam').offset({top:10, left: 20});
+					$('#film').offset({top:300, left: 300});
 				} else {
-					$('#film').animate({top: "+=17px"}, 'fast');
+							i = randomInteger(1,20);
+								$('#cam').animate({top: "-=10px"}, 50);
+								// Move film roll
+								if(isEven(i) === true && i <= 10) {
+									$('#film').animate({top: "-=12px"}, 50);
+								} else if(isEven(i) === true && i >= 10) {
+									$('#film').animate({top: "+=17px"}, 50);
+								} else {
+									$('#film').animate({top: "-=23px"}, 50);
+								}
 				}
 				break;
 			// Right Arrow Pressed
 			case 39:
 			case 68:
-			i = randomInteger(1,20);
-				$('#cam').animate({left: "+=10px"}, 'fast');
-				// Move film roll
-				if(isEven(i) === true) {
-					$('#film').animate({left: "-=13px"}, 'fast');
+				$('#cam').stop();
+				offsetcam = $('#cam').offset();
+				offsetfilm = $('#film').offset();
+				if((offsetfilm.top - 40 <= offsetcam.top && offsetcam.top <= offsetfilm.top +
+				40) && (offsetfilm.left - 40 <= offsetcam.left && offsetcam.left <= offsetfilm.left +
+				40)) {
+					score++;
+					alert('GOT IT! Your score:' + score);
+					$('#cam').offset({top:10, left: 20});
+					$('#film').offset({top:300, left: 300});
 				} else {
-					$('#film').animate({left: "+=20px"}, 'fast');
+							i = randomInteger(1,20);
+								$('#cam').animate({left: "+=10px"}, 50);
+								// Move film roll
+								if(isEven(i) === true && i <= 10) {
+									$('#film').animate({left: "-=13px"}, 50);
+								} else if(isEven(i) === true && i >= 10) {
+									$('#film').animate({left: "+=20px"}, 50);
+								} else {
+									$('#film').animate({left: "-=18px"}, 50);
+								}
 				}
 				break;
 			// Down Arrow Pressed
 			case 40:
 			case 83:
-			i = randomInteger(1,20);
-				$('#cam').animate({top: "+=10px"}, 'fast');
-				// Move film roll
-				if(isEven(i) === true) {
-					$('#film').animate({top: "-=13px"}, 'fast');
+				$('#cam').stop();
+				offsetcam = $('#cam').offset();
+				offsetfilm = $('#film').offset();
+				if((offsetfilm.top - 40 <= offsetcam.top && offsetcam.top <= offsetfilm.top +
+				40) && (offsetfilm.left - 40 <= offsetcam.left && offsetcam.left <= offsetfilm.left +
+				40)) {
+					score++;
+					alert('GOT IT! Your score:' + score);
+					$('#cam').offset({top:10, left: 20});
+					$('#film').offset({top:300, left: 300});
 				} else {
-					$('#film').animate({top: "+=18px"}, 'fast');
+							i = randomInteger(1,20);
+								$('#cam').animate({top: "+=10px"}, 50);
+								// Move film roll
+								if(isEven(i) === true && i <= 10) {
+									$('#film').animate({top: "-=13px"}, 50);
+								} else if(isEven(i) === true && i >= 10) {
+									$('#film').animate({top: "+=18px"}, 50);
+								} else {
+									$('#film').animate({top: "-=24px"}, 50);
+								}
 				}
 				break;
 		}
