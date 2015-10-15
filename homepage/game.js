@@ -243,6 +243,7 @@ var directCamBelow = directFilmBelow = "-=";
 																	} else {
 																		//out of border - jump to center
 																			$('#film').offset({top:300, left: 300});
+																			alert('whooops!');
 																	}
 									break;
 
@@ -267,6 +268,7 @@ var directCamBelow = directFilmBelow = "-=";
 																	} else {
 																		//out of border - jump to center
 																			$('#film').offset({top:300, left: 300});
+																			alert('whooops!');
 																	}
 									break;
 
@@ -292,6 +294,7 @@ var directCamBelow = directFilmBelow = "-=";
 																	} else {
 																		//out of border - jump to center
 																			$('#film').offset({top:300, left: 300});
+																			alert('whooops!');
 																	}
 									break;
 
@@ -317,6 +320,7 @@ var directCamBelow = directFilmBelow = "-=";
 																	} else {
 																		//out of border - jump to center
 																			$('#film').offset({top:300, left: 300});
+																			alert('whooops!');
 																	}
 									break;
 
