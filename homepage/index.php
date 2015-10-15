@@ -81,9 +81,9 @@
 
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="app.js"></script>
-	<script src="jquery.colorbox-min.js"></script>
-	<script type="text/javascript" src="jquery.lazyload.mini.js"></script>
+    <script src="js/app.js"></script>
+	<script src="js/jquery.colorbox-min.js"></script>
+	<script type="text/javascript" src="js/jquery.lazyload.mini.js"></script>
 		<script>
 			 $(document).ready(function () {
 			 $("img").lazyload({effect:"fadeIn"});
