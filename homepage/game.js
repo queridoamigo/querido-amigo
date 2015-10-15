@@ -70,17 +70,18 @@ var newRecord;
 var gotcha = false;
 
 // check window borders
-function checkEdge(offsetCam, moveExtraFast, directCamBelow, moveCamMulti) {
+function checkCameraEdge(offsetCam, moveExtraFast, directCamBelow, moveCamMulti) {
 //get window size
 	var pageHeight = $(window).height();
 	var pageWidth = $(window).width();
 
+//check pressed keys
     $(document).keydown(function(key) {
         switch(parseInt(key.which,10)) {
 			// Left arrow key pressed
 			case 37:
 			case 65:
-				//for replace above/below
+				//check out of borders
 					if(offsetCam.left < 0 - moveExtraFast - 50 ) {
 						gotcha = true;
 					} else {
@@ -163,10 +164,13 @@ var directCamBelow = directFilmBelow = "-=";
 									case 'A':
 															/* get random for moving */
 															i = randomInteger(1,20);
-																checkEdge(offsetCam, moveExtraFast, directCamBelow, moveCamMulti);
+																//get func
+																checkCameraEdge(offsetCam, moveExtraFast, directCamBelow, moveCamMulti);
 																	if(gotcha == false) {
+																		//if cam wasn't cross border do straight move
 																		$('#cam').animate({left: directCamBelow + (moveCamMulti * moveDefault)}, 50);
 																	} else {
+																		//out of border - jump through screen
 																		$('#cam').animate({left: pageWidth = windowSize() - 50 }, 1);
 																	}
 																// Move film roll
@@ -183,7 +187,7 @@ var directCamBelow = directFilmBelow = "-=";
 
 									case 'W':
 															i = randomInteger(1,20);
-																checkEdge(offsetCam, moveExtraFast, directCamBelow, moveCamMulti);
+																checkCameraEdge(offsetCam, moveExtraFast, directCamBelow, moveCamMulti);
 																	if(gotcha == false) {
 																		$('#cam').animate({top: directCamBelow + moveCamMulti * moveDefault}, 50);
 																	} else {
@@ -202,7 +206,7 @@ var directCamBelow = directFilmBelow = "-=";
 									case 'D':
 
 															i = randomInteger(1,20);
-																checkEdge(offsetCam, moveExtraFast, directCamBelow, moveCamMulti);
+																checkCameraEdge(offsetCam, moveExtraFast, directCamBelow, moveCamMulti);
 																	if(gotcha == false) {
 																		$('#cam').animate({left: directCamAbove + moveCamMulti * moveDefault}, 50);
 																} else {
@@ -221,7 +225,7 @@ var directCamBelow = directFilmBelow = "-=";
 									case 'S':
 
 															i = randomInteger(1,20);
-																checkEdge(offsetCam, moveExtraFast, directCamBelow, moveCamMulti);
+																checkCameraEdge(offsetCam, moveExtraFast, directCamBelow, moveCamMulti);
 																	if(gotcha == false) {
 																		$('#cam').animate({top: directCamAbove + moveCamMulti * moveDefault}, 50);
 																	} else {
