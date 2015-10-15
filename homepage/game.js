@@ -67,17 +67,57 @@ var newRecord;
 	} 
 }
 
+var gotcha = false;
+
 // check window borders
 function checkEdge(offsetCam, moveExtraFast, directCamBelow, moveCamMulti) {
 //get window size
-	var pageHeight = $("html").height();
-	var pageWidth = $("html").width();
-//for replace above/below
-	if(offsetCam.left < 0 - moveExtraFast) {
-moveCamMulti = -4*moveCamMulti;
-alert("111" + " moveCamMulti: " + moveCamMulti);
-return moveCamMulti;
-	} 
+	var pageHeight = $(window).height();
+	var pageWidth = $(window).width();
+
+    $(document).keydown(function(key) {
+        switch(parseInt(key.which,10)) {
+			// Left arrow key pressed
+			case 37:
+			case 65:
+				//for replace above/below
+					if(offsetCam.left < 0 - moveExtraFast - 50 ) {
+						gotcha = true;
+					} else {
+						gotcha = false;
+					} 
+				break;
+			// Up Arrow Pressed
+			case 38:
+			case 87:
+					if(offsetCam.top < 0 - moveExtraFast ) {
+						gotcha = true;
+					} else {
+						gotcha = false;
+					} 
+				break;
+			// Right Arrow Pressed
+			case 39:
+			case 68:
+					if(offsetCam.left > pageWidth - moveExtraFast - 50 ) {
+						gotcha = true;
+					} else {
+						gotcha = false;
+					} 
+				break;
+				break;
+			// Down Arrow Pressed
+			case 40:
+			case 83:
+					if(offsetCam.top > pageHeight ) {
+						gotcha = true;
+					} else {
+						gotcha = false;
+					} 
+				break;
+		}
+});
+return gotcha;
 }
 
 /* Function for moving camera and film roll */
@@ -118,14 +158,17 @@ var moveFilmMulti = 1;
 var directCamAbove = directFilmAbove = "+=";
 var directCamBelow = directFilmBelow = "-=";
 
-//moveCamMulti = checkEdge(offsetCam, moveExtraFast, directCamBelow, moveCamMulti);
-
 /* swtich type of moving - left/up/right/down */
 								switch(type) {
 									case 'A':
 															/* get random for moving */
 															i = randomInteger(1,20);
-																$('#cam').animate({left: directCamBelow + (moveCamMulti * moveDefault)}, 50);
+																checkEdge(offsetCam, moveExtraFast, directCamBelow, moveCamMulti);
+																	if(gotcha == false) {
+																		$('#cam').animate({left: directCamBelow + (moveCamMulti * moveDefault)}, 50);
+																	} else {
+																		$('#cam').animate({left: pageWidth = windowSize() - 50 }, 1);
+																	}
 																// Move film roll
 																// check even random number for different values
 																// of moving
@@ -140,7 +183,12 @@ var directCamBelow = directFilmBelow = "-=";
 
 									case 'W':
 															i = randomInteger(1,20);
-																$('#cam').animate({top: directCamBelow + moveCamMulti * moveDefault}, 50);
+																checkEdge(offsetCam, moveExtraFast, directCamBelow, moveCamMulti);
+																	if(gotcha == false) {
+																		$('#cam').animate({top: directCamBelow + moveCamMulti * moveDefault}, 50);
+																	} else {
+																		$('#cam').animate({top: pageHeight = windowSize() - 600 }, 1);
+																	}
 																// Move film roll
 																if(isEven(i) === true && i <= 10) {
 																	$('#film').animate({top: directFilmBelow + moveFilmMulti * moveMiddle}, 50);
@@ -154,7 +202,12 @@ var directCamBelow = directFilmBelow = "-=";
 									case 'D':
 
 															i = randomInteger(1,20);
-																$('#cam').animate({left: directCamAbove + moveCamMulti * moveDefault}, 50);
+																checkEdge(offsetCam, moveExtraFast, directCamBelow, moveCamMulti);
+																	if(gotcha == false) {
+																		$('#cam').animate({left: directCamAbove + moveCamMulti * moveDefault}, 50);
+																} else {
+																		$('#cam').animate({left: -150 }, 1);
+																}
 																// Move film roll
 																if(isEven(i) === true && i <= 10) {
 																	$('#film').animate({left: directFilmBelow + moveFilmMulti * moveMiddle}, 50);
@@ -168,7 +221,12 @@ var directCamBelow = directFilmBelow = "-=";
 									case 'S':
 
 															i = randomInteger(1,20);
-																$('#cam').animate({top: directCamAbove + moveCamMulti * moveDefault}, 50);
+																checkEdge(offsetCam, moveExtraFast, directCamBelow, moveCamMulti);
+																	if(gotcha == false) {
+																		$('#cam').animate({top: directCamAbove + moveCamMulti * moveDefault}, 50);
+																	} else {
+																		$('#cam').animate({top: - 60 }, 1);
+																	}
 																// Move film roll
 																if(isEven(i) === true && i <= 10) {
 																	$('#film').animate({top: directFilmBelow + moveFilmMulti * moveMiddle}, 50);
@@ -185,8 +243,9 @@ var directCamBelow = directFilmBelow = "-=";
 
 // get window size
 function windowSize() {
-	var pageHeight = $("html").height();
-	var pageWidth = $("html").width();
-	alert("height: " + pageHeight + " width: " + pageWidth);
+	var pageHeight = $(window).height();
+	var pageWidth = $(window).width();
+	return pageHeight, pageWidth;
+//	alert("height: " + pageHeight + " width: " + pageWidth);
 }
 /* END OF GAME */
