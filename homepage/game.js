@@ -121,6 +121,60 @@ function checkCameraEdge(offsetCam, moveExtraFast, directCamBelow, moveCamMulti)
 return gotcha;
 }
 
+var filmJump = false;
+
+//Film roll move through
+function checkFilmEdge(offsetFilm, moveExtraFast) {
+//get window size
+	var pageHeight = $(window).height();
+	var pageWidth = $(window).width();
+
+//check pressed keys
+    $(document).keydown(function(key) {
+        switch(parseInt(key.which,10)) {
+			// Left arrow key pressed
+			case 37:
+			case 65:
+				//check out of borders
+					if(offsetFilm.left  < 0 - moveExtraFast - 50 ) {
+						filmJump = true;
+					} else {
+						filmJump = false;
+					} 
+				break;
+			// Up Arrow Pressed
+			case 38:
+			case 87:
+					if(offsetFilm.top < 0 - moveExtraFast ) {
+						filmJump = true;
+					} else {
+						filmJump = false;
+					} 
+				break;
+			// Right Arrow Pressed
+			case 39:
+			case 68:
+					if(offsetFilm.left > pageWidth - moveExtraFast ) {
+						filmJump = true;
+					} else {
+						filmJump = false;
+					} 
+				break;
+				break;
+			// Down Arrow Pressed
+			case 40:
+			case 83:
+					if(offsetFilm.top > pageHeight ) {
+						filmJump = true;
+					} else {
+						filmJump = false;
+					} 
+				break;
+		}
+});
+return filmJump;
+}
+
 /* Function for moving camera and film roll */
 function camFilmMoving(type) {
 /* type - dimension of moving - left/top */
@@ -176,13 +230,20 @@ var directCamBelow = directFilmBelow = "-=";
 																// Move film roll
 																// check even random number for different values
 																// of moving
-																if(isEven(i) === true && i <= 10) {
-																	$('#film').animate({left: directFilmBelow + (moveFilmMulti * moveMiddle)}, 50);
-																} else if(isEven(i) === true && i >= 10) {
-																	$('#film').animate({left: directFilmAbove +(moveFilmMulti * moveFast)}, 50);
-																} else {
-																	$('#film').animate({left: directFilmAbove + (moveFilmMulti * moveExtraFast)}, 50);
-																}
+																checkFilmEdge(offsetFilm, moveExtraFast);
+																	if(filmJump == false) {
+																		//if cam wasn't cross border do straight move
+																				if(isEven(i) === true && i <= 10) {
+																					$('#film').animate({left: directFilmBelow + (moveFilmMulti * moveMiddle)}, 50);
+																				} else if(isEven(i) === true && i >= 10) {
+																					$('#film').animate({left: directFilmAbove +(moveFilmMulti * moveFast)}, 50);
+																				} else {
+																					$('#film').animate({left: directFilmAbove + (moveFilmMulti * moveExtraFast)}, 50);
+																				}
+																	} else {
+																		//out of border - jump to center
+																			$('#film').offset({top:300, left: 300});
+																	}
 									break;
 
 									case 'W':
@@ -194,13 +255,19 @@ var directCamBelow = directFilmBelow = "-=";
 																		$('#cam').animate({top: pageHeight = windowSize() - 600 }, 1);
 																	}
 																// Move film roll
-																if(isEven(i) === true && i <= 10) {
-																	$('#film').animate({top: directFilmBelow + moveFilmMulti * moveMiddle}, 50);
-																} else if(isEven(i) === true && i >= 10) {
-																	$('#film').animate({top: directFilmAbove + moveFilmMulti * moveFast}, 50);
-																} else {
-																	$('#film').animate({top: directFilmBelow + moveFilmMulti * moveExtraFast}, 50);
-																}
+																checkFilmEdge(offsetFilm, moveExtraFast);
+																	if(filmJump == false) {
+																				if(isEven(i) === true && i <= 10) {
+																					$('#film').animate({top: directFilmBelow + moveFilmMulti * moveMiddle}, 50);
+																				} else if(isEven(i) === true && i >= 10) {
+																					$('#film').animate({top: directFilmAbove + moveFilmMulti * moveFast}, 50);
+																				} else {
+																					$('#film').animate({top: directFilmBelow + moveFilmMulti * moveExtraFast}, 50);
+																				}
+																	} else {
+																		//out of border - jump to center
+																			$('#film').offset({top:300, left: 300});
+																	}
 									break;
 
 									case 'D':
@@ -213,13 +280,19 @@ var directCamBelow = directFilmBelow = "-=";
 																		$('#cam').animate({left: -150 }, 1);
 																}
 																// Move film roll
-																if(isEven(i) === true && i <= 10) {
-																	$('#film').animate({left: directFilmBelow + moveFilmMulti * moveMiddle}, 50);
-																} else if(isEven(i) === true && i >= 10) {
-																	$('#film').animate({left: directFilmAbove + moveFilmMulti * moveFast}, 50);
-																} else {
-																	$('#film').animate({left: directFilmBelow + moveFilmMulti * moveExtraFast}, 50);
-																}
+																checkFilmEdge(offsetFilm, moveExtraFast);
+																	if(filmJump == false) {
+																				if(isEven(i) === true && i <= 10) {
+																					$('#film').animate({left: directFilmBelow + moveFilmMulti * moveMiddle}, 50);
+																				} else if(isEven(i) === true && i >= 10) {
+																					$('#film').animate({left: directFilmAbove + moveFilmMulti * moveFast}, 50);
+																				} else {
+																					$('#film').animate({left: directFilmBelow + moveFilmMulti * moveExtraFast}, 50);
+																				}
+																	} else {
+																		//out of border - jump to center
+																			$('#film').offset({top:300, left: 300});
+																	}
 									break;
 
 									case 'S':
@@ -232,13 +305,19 @@ var directCamBelow = directFilmBelow = "-=";
 																		$('#cam').animate({top: - 60 }, 1);
 																	}
 																// Move film roll
-																if(isEven(i) === true && i <= 10) {
-																	$('#film').animate({top: directFilmBelow + moveFilmMulti * moveMiddle}, 50);
-																} else if(isEven(i) === true && i >= 10) {
-																	$('#film').animate({top: directFilmAbove + moveFilmMulti * moveFast}, 50);
-																} else {
-																	$('#film').animate({top: directFilmBelow + moveFilmMulti * moveExtraFast}, 50);
-																}
+																checkFilmEdge(offsetFilm, moveExtraFast);
+																	if(filmJump == false) {
+																				if(isEven(i) === true && i <= 10) {
+																					$('#film').animate({top: directFilmBelow + moveFilmMulti * moveMiddle}, 50);
+																				} else if(isEven(i) === true && i >= 10) {
+																					$('#film').animate({top: directFilmAbove + moveFilmMulti * moveFast}, 50);
+																				} else {
+																					$('#film').animate({top: directFilmBelow + moveFilmMulti * moveExtraFast}, 50);
+																				}
+																	} else {
+																		//out of border - jump to center
+																			$('#film').offset({top:300, left: 300});
+																	}
 									break;
 
 								} /*endswitch*/
