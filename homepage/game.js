@@ -18,7 +18,7 @@ var upMove = 'W';
 var rightMove = 'D';
 var downMove = 'S';
 
-//MOving cam on keydown
+//Moving cam on keydown
     $(document).keydown(function(key) {
         switch(parseInt(key.which,10)) {
 			// Left arrow key pressed
@@ -110,7 +110,7 @@ function checkCameraEdge(offsetCam, moveExtraFast, directCamBelow, moveCamMulti)
 			// Down Arrow Pressed
 			case 40:
 			case 83:
-					if(offsetCam.top > pageHeight ) {
+					if(offsetCam.top > pageHeight - 50) {
 						gotcha = true;
 					} else {
 						gotcha = false;
