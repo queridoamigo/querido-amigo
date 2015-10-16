@@ -18,10 +18,10 @@ $record = $_GET[record];
 
 				// html
 				echo "<table id=\"scoreTable\" >\n";
-				while ($line = mysql_fetch_array($result_select, MYSQL_ASSOC)) {
-						echo "\t<tr>\n";
-						foreach ($line as $col_value) {
-								echo "\t\t<td>$col_value</td>\n";
+				while ($row = mysql_fetch_array($result_select, MYSQL_ASSOC)) {
+						echo "\t<tr id='$row[name]'>\n";
+						foreach ($row as $key => $value) {
+									echo "\t\t<td>$value</td>\n";
 						}
 						echo "\t</tr>\n";
 				}
@@ -36,10 +36,10 @@ $record = $_GET[record];
 
 				// html
 				echo "<table id=\"scoreTable\" >\n";
-				while ($line = mysql_fetch_array($result_select, MYSQL_ASSOC)) {
+				while ($row = mysql_fetch_array($result_select, MYSQL_ASSOC)) {
 						echo "\t<tr>\n";
-						foreach ($line as $col_value) {
-								echo "\t\t<td>$col_value</td>\n";
+						foreach ($row as $key) {
+								echo "\t\t<td>$key</td>\n";
 						}
 						echo "\t</tr>\n";
 				}
