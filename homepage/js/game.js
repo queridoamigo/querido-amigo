@@ -7,8 +7,17 @@
 	nameDefault = default value for promt();	
 */
 
+//show highscores on start
+$(document).ready(function() {
+	$.get( 'highlights.php', { record: 'start'}, function (result) {
+		$('#scoreList').append(result);
+	});
+});
+
+//set vars
 var i = offsetCam = offsetFilm = score = 0;
 
+//user name
 var name;
 var nameDefault = 'Jake Donaghue';
 
@@ -58,18 +67,23 @@ var isEven = function(Num) {
 
 // function for get player's name
 function getPlayerName(nameDefault, score) {
-var newRecord;
-	newRecord = prompt('GOT IT! Your score: ' + score, nameDefault);
-
+var userName;
+	userName = prompt('GOT IT! Your score: ' + score, nameDefault);
 //check new name
-	if(newRecord != '') {
-		nameDefault = newRecord;
-	} 
+	if(userName != '') {
+		nameDefault = userName;
+	}
+//get-request to mysql 
+				$.get( 'highlights.php', { score: score, name: userName, record: 'yes'}, function (result) {
+					$('#scoreTable').remove();
+					$('#scoreList').append(result);
+				});
 }
 
-var gotcha = false;
 
 // check window borders
+var gotcha = false;
+
 function checkCameraEdge(offsetCam, moveExtraFast, directCamBelow, moveCamMulti) {
 //get window size
 	var pageHeight = $(window).height();

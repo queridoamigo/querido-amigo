@@ -1,5 +1,45 @@
 <?php
 
+function getSelect($mysql_host, $mysql_user, $mysql_pass, $dbName, $dbTable) {
+
+				//connect
+				$link = mysql_connect($mysql_host, $mysql_user, $mysql_pass)
+					or die('connection error: ' . mysql_error());
+				//select db
+				mysql_select_db($dbName) or die('DB error');
+
+				// set request
+				//select highscores
+				$query_select = 'SELECT name, score FROM ' .$dbTable. ' ORDER BY score DESC LIMIT 10;';
+				$result = mysql_query($query_select) or die('Request down: ' . mysql_error());
+
+				return $result;
+}
+
+function getInsert($mysql_host, $mysql_user, $mysql_pass, $dbName, $dbTable, $name, $score) {
+
+				//connect
+				$link = mysql_connect($mysql_host, $mysql_user, $mysql_pass)
+					or die('connection error: ' . mysql_error());
+				//select db
+				mysql_select_db($dbName) or die('DB error');
+
+				//check user highest score
+				$query_check_user = 'SELECT score FROM ' .$dbTable. ' WHERE name = '. $name .';';
+				$result_check_user = mysql_query($query_check_user) or die('Request down: ' . mysql_error());
+				$checkUser = mysql_fetch_array($result_check_user);
+
+				if($checkUser['score'] < $score) {
+								//inserting new scores
+								$query_insert = 'INSERT INTO '. $dbTable .'(name,score) VALUES ('. $name . ',' .
+																$score . ') ON DUPLICATE KEY UPDATE score = VALUES(score);';
+
+								$result = mysql_query($query_insert) or die('Request insert down: ' . mysql_error());
+				} 
+
+				return $result;
+}
+
 function completeRows() {
 
 	$linksPics[0] = array("thumb" => "https://farm1.staticflickr.com/506/19401739228_248e7fa5a7_n.jpg", "fullsize" => "https://farm1.staticflickr.com/506/19401739228_248e7fa5a7_c.jpg");

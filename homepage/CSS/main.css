@@ -69,6 +69,19 @@ body {
 	top: 300px;
 }
 
+/* Top-10 scores list */
+
+#scoreList {
+	height: 215px;
+	width: 10%;
+	margin-top: -80px;
+	margin-left: 89%;
+	text-align: center;
+	font-family: Garamond, serif;
+	font-size: 15px;
+	display: block;
+}
+
 /* Cameras list */
 .camlist {
     width: 300px;
