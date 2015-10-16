@@ -17,9 +17,9 @@ $(document).ready(function() {
 //set vars
 var i = offsetCam = offsetFilm = score = 0;
 
-//user name
-var name;
+//name
 var nameDefault = 'Jake Donaghue';
+var nameCount = 0;
 
 //moving keys
 var leftMove = 'A';
@@ -66,13 +66,24 @@ var isEven = function(Num) {
 };
 
 // function for get player's name
-function getPlayerName(nameDefault, score) {
-var userName;
-	userName = prompt('GOT IT! Your score: ' + score, nameDefault);
-//check new name
-	if(userName != '') {
-		nameDefault = userName;
+function getPlayerName(score) {
+
+//user name
+	var name;
+	var userName;
+
+	if(nameCount == 0) {
+		userName = prompt('GOT IT! Your score: ' + score, nameDefault);
+		nameCount++;
+
+	//check new name
+		if(userName != '') {
+			nameDefault = userName;
+		}
+	} else {
+		alert('Well done, ' + nameDefault + '! Your score: ' + score);
 	}
+
 //get-request to mysql 
 				$.get( 'highlights.php', { score: score, name: userName, record: 'yes'}, function (result) {
 					$('#scoreTable').remove();
@@ -207,7 +218,7 @@ function camFilmMoving(type) {
 				40)) {
 /* if WIN - score++ */
 					score++;
-					getPlayerName(nameDefault, score);
+					getPlayerName(score);
 /* put cam and film to new game */
 					$('#cam').offset({top:10, left: 20});
 					$('#film').offset({top:300, left: 300});
