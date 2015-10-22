@@ -1,6 +1,14 @@
 <?php
 
-function getSelect($mysql_host, $mysql_user, $mysql_pass, $dbName, $dbTable) {
+function getSelect($param) {
+
+				$dbParams = get_object_vars($param);
+
+				$mysql_host = $dbParams['mysql_host'];
+				$mysql_user = $dbParams['mysql_user'];
+				$mysql_pass = $dbParams['mysql_pass'];
+				$dbName = $dbParams['dbName'];
+				$dbTable = $dbParams['dbTable'];
 
 				//connect
 				$link = mysql_connect($mysql_host, $mysql_user, $mysql_pass)
@@ -25,7 +33,16 @@ function getSelect($mysql_host, $mysql_user, $mysql_pass, $dbName, $dbTable) {
 
 }
 
-function getInsert($mysql_host, $mysql_user, $mysql_pass, $dbName, $dbTable, $name, $score) {
+function getInsert($param, $name, $score) {
+
+				$dbParams = get_object_vars($param);
+
+				$mysql_host = $dbParams['mysql_host'];
+				$mysql_user = $dbParams['mysql_user'];
+				$mysql_pass = $dbParams['mysql_pass'];
+				$dbName = $dbParams['dbName'];
+				$dbTable = $dbParams['dbTable'];
+
 
 				//connect
 				$link = mysql_connect($mysql_host, $mysql_user, $mysql_pass)

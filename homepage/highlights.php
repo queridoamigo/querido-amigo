@@ -6,12 +6,7 @@
 
 //connect to db
 $db = new dbConfig();
-
-$mysql_host = $db->mysql_host;
-$mysql_user = $db->mysql_user;
-$mysql_pass = $db->mysql_pass;
-$dbName = $db->dbName;
-$dbTable = $db->dbTable;
+$db->getDbParams();
 
 //check new record
 
@@ -23,8 +18,8 @@ $record = $_GET['record'];
 				$score = $_GET['score'];
 
 					//use functions to insert new recordds and select top-10
-					$result_insert = getInsert($mysql_host, $mysql_user, $mysql_pass, $dbName, $dbTable, $name, $score);
-					$result_select = getSelect($mysql_host, $mysql_user, $mysql_pass, $dbName, $dbTable);
+					$result_insert = getInsert($db, $name, $score);
+					$result_select = getSelect($db);
 
 				// html
 				echo "<table id=\"scoreTable\" >\n";
@@ -42,7 +37,7 @@ $record = $_GET['record'];
 //show highscores at new game
 
 				//select top-10
-				$result_select = getSelect($mysql_host, $mysql_user, $mysql_pass, $dbName, $dbTable);
+				$result_select = getSelect($db);
 
 				// html
 				echo "<table id=\"scoreTable\" >\n";

@@ -2,11 +2,11 @@
 	
 	class dbConfig {
 
-		public static $mysql_host;
-		public static $mysql_user;
-		public static $mysql_pass;
-		public static $dbName;
-		public static $dbTable;
+		public $mysql_host;
+		public $mysql_user;
+		public $mysql_pass;
+		public $dbName;
+		public $dbTable;
 
 		public function __construct() {
 
@@ -22,6 +22,12 @@
 			$this->mysql_pass = $config["mysql_pass"];
 			$this->dbName = $config["dbName"];
 			$this->dbTable = $config["dbTable"];
+
+		}
+
+		public function getDbParams() {
+
+			return array($this->mysql_host, $this->mysql_user, $this->mysql_pass, $this->dbName, $this->dbTable);
 
 		}
 
