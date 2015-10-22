@@ -14,6 +14,15 @@ function getSelect($mysql_host, $mysql_user, $mysql_pass, $dbName, $dbTable) {
 				$result = mysql_query($query_select) or die('Request down: ' . mysql_error());
 
 				return $result;
+
+				// clean 
+				if(isset($result)) { 
+					mysql_free_result($result);
+				}
+
+				// close 
+				mysql_close($link);
+
 }
 
 function getInsert($mysql_host, $mysql_user, $mysql_pass, $dbName, $dbTable, $name, $score) {
@@ -38,7 +47,16 @@ function getInsert($mysql_host, $mysql_user, $mysql_pass, $dbName, $dbTable, $na
 				} 
 
 				return $result;
-}
+
+				// clean 
+				if(isset($result)) { 
+					mysql_free_result($result);
+				}
+
+				// close 
+				mysql_close($link);
+
+				}
 
 function completeRows() {
 

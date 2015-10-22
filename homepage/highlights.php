@@ -3,8 +3,13 @@
 //incudes
 		include("includes/functions.php");	
 		include("includes/network.php");	
+		include("classes/config.php");	
 
 $record = $_GET[record];
+
+//connect to db
+$db = new dbConfig();
+$dbParams = $db->connectParams();
 
 //check new record
 	if($record == 'yes') {
@@ -46,11 +51,5 @@ $record = $_GET[record];
 				echo "</table>\n";
 
 	} 
-
-// clean 
-mysql_free_result($result);
-
-// close 
-mysql_close($link);
 
 ?>
