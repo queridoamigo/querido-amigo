@@ -25,16 +25,6 @@
 
 		}
 
-		public function connectParams() {
-		
-			$this->load();
-			$params = $this->mysql_host . " , " . $this->mysql_user . " , " . $this->mysql_pass . " , " . $this->dbName . " , " . $this->dbTable
-			;
-
-			return $params;
-
-		}
-
 	}
 
 ?>

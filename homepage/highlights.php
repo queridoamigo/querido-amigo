@@ -2,20 +2,25 @@
 
 //incudes
 		include("includes/functions.php");	
-		include("includes/network.php");	
 		include("classes/config.php");	
-
-$record = $_GET[record];
 
 //connect to db
 $db = new dbConfig();
-$dbParams = $db->connectParams();
+
+$mysql_host = $db->mysql_host;
+$mysql_user = $db->mysql_user;
+$mysql_pass = $db->mysql_pass;
+$dbName = $db->dbName;
+$dbTable = $db->dbTable;
 
 //check new record
+
+$record = $_GET['record'];
+
 	if($record == 'yes') {
 				//get player data
-				$name = '\''. substr( str_replace('\'','',$_GET[name]) , 0, 15) .'\'';
-				$score = $_GET[score];
+				$name = '\''. substr( str_replace('\'','',$_GET['name']) , 0, 15) .'\'';
+				$score = $_GET['score'];
 
 					//use functions to insert new recordds and select top-10
 					$result_insert = getInsert($mysql_host, $mysql_user, $mysql_pass, $dbName, $dbTable, $name, $score);
