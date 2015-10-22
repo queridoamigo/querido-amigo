@@ -20,6 +20,7 @@ var i = offsetCam = offsetFilm = score = 0;
 //name
 var nameDefault = 'Jake Donaghue';
 var nameCount = 0;
+var userName;
 
 //moving keys
 var leftMove = 'A';
@@ -67,10 +68,6 @@ var isEven = function(Num) {
 
 // function for get player's name
 function getPlayerName(score) {
-
-//user name
-	var name;
-	var userName;
 
 	if(nameCount == 0) {
 		userName = prompt('GOT IT! Your score: ' + score, nameDefault);
