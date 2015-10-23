@@ -17,6 +17,9 @@ $(document).ready(function() {
 //set vars
 var i = offsetCam = offsetFilm = score = 0;
 
+// check window borders
+var gotcha = false;
+
 //name
 var nameDefault = 'Jake Donaghue';
 var nameCount = 0;
@@ -88,9 +91,80 @@ function getPlayerName(score) {
 				});
 }
 
+function filmMove(typeMove, directFilmAbove, directFilmBelow, moveFilmMulti, move) {
+//move film roll on 1 from 8 directions:
+				/*
+				left
+				left-top
+				top
+				top-right
+				right
+				right-bottom
+				bottom
+				left-bottom
+				*/
+				switch(typeMove) {
 
-// check window borders
-var gotcha = false;
+					case 1:
+						$('#film').animate({left: directFilmBelow + (moveFilmMulti * move)}, 50);
+					break;
+
+					case 2:
+						$('#film').animate({left: directFilmBelow + (moveFilmMulti * move)}, 50).animate({top: directFilmBelow + (moveFilmMulti * move)}, 50);
+					break;
+
+					case 3:
+						$('#film').animate({top: directFilmBelow + (moveFilmMulti * move)}, 50);
+					break;
+
+					case 4:
+						$('#film').animate({left: directFilmAbove + (moveFilmMulti * move)}, 50).animate({top: directFilmBelow + (moveFilmMulti * move)}, 50);
+					break;
+
+					case 5:
+						$('#film').animate({left: directFilmAbove + (moveFilmMulti * move)}, 50);
+					break;
+
+					case 6:
+						$('#film').animate({left: directFilmAbove + (moveFilmMulti * move)},50).animate({top: directFilmAbove + (moveFilmMulti * move)}, 50);
+					break;
+
+					case 7:
+						$('#film').animate({top: directFilmAbove + (moveFilmMulti * move)}, 50);
+					break;
+
+					case 8:
+						$('#film').animate({left: directFilmBelow + (moveFilmMulti * move)},50).animate({top: directFilmAbove + (moveFilmMulti * move)}, 50);
+					break;
+
+				}//endswitch typeMove
+}//end function filmMove
+
+function getDiffFilmMoveSpeed(moveSpeed, moveDefault, moveMiddle, moveFast, moveExtraFast) {
+
+				switch(moveSpeed) {
+
+					case 1:
+						move = moveDefault;
+					break;
+
+					case 2:
+						move = moveMiddle;
+					break;
+
+					case 3:
+						move = moveFast;
+					break;
+
+					case 4:
+						move = moveExtraFast;
+					break;
+
+				}//endswitch moveSpeed 
+
+		return move;
+
+} //end getDiffFilmMoveSpeed
 
 function checkCameraEdge(offsetCam, moveExtraFast, directCamBelow, moveCamMulti) {
 //get window size
@@ -226,6 +300,7 @@ var moveDefault = 10;
 var moveMiddle = 13;
 var moveFast = 18;
 var moveExtraFast = 25;
+var move;
 
 //move multipliers
 var moveCamMulti = 1;
@@ -240,6 +315,9 @@ var directCamBelow = directFilmBelow = "-=";
 									case 'A':
 															/* get random for moving */
 															i = randomInteger(1,20);
+															var typeMove = randomInteger(1,8);//rand move direction
+															var moveSpeed = randomInteger(1,4);//rand for get different move speed
+															moveFilmMulti = randomInteger(1,3);//rand movemultiplication
 																//get func
 																checkCameraEdge(offsetCam, moveExtraFast, directCamBelow, moveCamMulti);
 																	if(gotcha == false) {
@@ -254,14 +332,10 @@ var directCamBelow = directFilmBelow = "-=";
 																// of moving
 																checkFilmEdge(offsetFilm, moveExtraFast);
 																	if(filmJump == false) {
-																		//if cam wasn't cross border do straight move
-																				if(isEven(i) === true && i <= 10) {
-																					$('#film').animate({left: directFilmBelow + (moveFilmMulti * moveMiddle)}, 50);
-																				} else if(isEven(i) === true && i >= 10) {
-																					$('#film').animate({left: directFilmAbove +(moveFilmMulti * moveFast)}, 50);
-																				} else {
-																					$('#film').animate({left: directFilmAbove + (moveFilmMulti * moveExtraFast)}, 50);
-																				}
+
+																				move = getDiffFilmMoveSpeed(moveSpeed, moveDefault, moveMiddle, moveFast, moveExtraFast);
+																				filmMove(typeMove, directFilmAbove, directFilmBelow, moveFilmMulti, move);
+
 																	} else {
 																		//out of border - jump to center
 																			$('#film').offset({top:300, left: 300});
@@ -271,6 +345,10 @@ var directCamBelow = directFilmBelow = "-=";
 
 									case 'W':
 															i = randomInteger(1,20);
+															var typeMove = randomInteger(1,8);//rand move direction
+															var moveSpeed = randomInteger(1,4);//rand for get different move speed
+															moveFilmMulti = randomInteger(1,3);//rand movemultiplication
+
 																checkCameraEdge(offsetCam, moveExtraFast, directCamBelow, moveCamMulti);
 																	if(gotcha == false) {
 																		$('#cam').animate({top: directCamBelow + moveCamMulti * moveDefault}, 50);
@@ -280,13 +358,10 @@ var directCamBelow = directFilmBelow = "-=";
 																// Move film roll
 																checkFilmEdge(offsetFilm, moveExtraFast);
 																	if(filmJump == false) {
-																				if(isEven(i) === true && i <= 10) {
-																					$('#film').animate({top: directFilmBelow + moveFilmMulti * moveMiddle}, 50);
-																				} else if(isEven(i) === true && i >= 10) {
-																					$('#film').animate({top: directFilmAbove + moveFilmMulti * moveFast}, 50);
-																				} else {
-																					$('#film').animate({top: directFilmBelow + moveFilmMulti * moveExtraFast}, 50);
-																				}
+
+																				move = getDiffFilmMoveSpeed(moveSpeed, moveDefault, moveMiddle, moveFast, moveExtraFast);
+																				filmMove(typeMove, directFilmAbove, directFilmBelow, moveFilmMulti, move);
+
 																	} else {
 																		//out of border - jump to center
 																			$('#film').offset({top:300, left: 300});
@@ -297,6 +372,10 @@ var directCamBelow = directFilmBelow = "-=";
 									case 'D':
 
 															i = randomInteger(1,20);
+															var typeMove = randomInteger(1,8);//rand move direction
+															var moveSpeed = randomInteger(1,4);//rand for get different move speed
+															moveFilmMulti = randomInteger(1,3);//rand movemultiplication
+
 																checkCameraEdge(offsetCam, moveExtraFast, directCamBelow, moveCamMulti);
 																	if(gotcha == false) {
 																		$('#cam').animate({left: directCamAbove + moveCamMulti * moveDefault}, 50);
@@ -306,13 +385,10 @@ var directCamBelow = directFilmBelow = "-=";
 																// Move film roll
 																checkFilmEdge(offsetFilm, moveExtraFast);
 																	if(filmJump == false) {
-																				if(isEven(i) === true && i <= 10) {
-																					$('#film').animate({left: directFilmBelow + moveFilmMulti * moveMiddle}, 50);
-																				} else if(isEven(i) === true && i >= 10) {
-																					$('#film').animate({left: directFilmAbove + moveFilmMulti * moveFast}, 50);
-																				} else {
-																					$('#film').animate({left: directFilmBelow + moveFilmMulti * moveExtraFast}, 50);
-																				}
+
+																				move = getDiffFilmMoveSpeed(moveSpeed, moveDefault, moveMiddle, moveFast, moveExtraFast);
+																				filmMove(typeMove, directFilmAbove, directFilmBelow, moveFilmMulti, move);
+
 																	} else {
 																		//out of border - jump to center
 																			$('#film').offset({top:300, left: 300});
@@ -323,6 +399,10 @@ var directCamBelow = directFilmBelow = "-=";
 									case 'S':
 
 															i = randomInteger(1,20);
+															var typeMove = randomInteger(1,8);//rand move direction
+															var moveSpeed = randomInteger(1,4);//rand for get different move speed
+															moveFilmMulti = randomInteger(1,3);//rand movemultiplication
+
 																checkCameraEdge(offsetCam, moveExtraFast, directCamBelow, moveCamMulti);
 																	if(gotcha == false) {
 																		$('#cam').animate({top: directCamAbove + moveCamMulti * moveDefault}, 50);
@@ -332,13 +412,10 @@ var directCamBelow = directFilmBelow = "-=";
 																// Move film roll
 																checkFilmEdge(offsetFilm, moveExtraFast);
 																	if(filmJump == false) {
-																				if(isEven(i) === true && i <= 10) {
-																					$('#film').animate({top: directFilmBelow + moveFilmMulti * moveMiddle}, 50);
-																				} else if(isEven(i) === true && i >= 10) {
-																					$('#film').animate({top: directFilmAbove + moveFilmMulti * moveFast}, 50);
-																				} else {
-																					$('#film').animate({top: directFilmBelow + moveFilmMulti * moveExtraFast}, 50);
-																				}
+
+																				move = getDiffFilmMoveSpeed(moveSpeed, moveDefault, moveMiddle, moveFast, moveExtraFast);
+																				filmMove(typeMove, directFilmAbove, directFilmBelow, moveFilmMulti, move);
+
 																	} else {
 																		//out of border - jump to center
 																			$('#film').offset({top:300, left: 300});
