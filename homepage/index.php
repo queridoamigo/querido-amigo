@@ -34,7 +34,7 @@
       <div class="container">
         <h1 id="hTitle">Querido Amigo</h1>
       </div>
-    </div> 
+	</div> 
 
     <div class="main-pics">
         <div class="container">
